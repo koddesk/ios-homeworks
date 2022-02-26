@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		24FBF20D27C8DA0E00C44711 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FBF20C27C8DA0E00C44711 /* AppDelegate.swift */; };
 		24FBF20F27C8DA0E00C44711 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FBF20E27C8DA0E00C44711 /* SceneDelegate.swift */; };
-		24FBF21127C8DA0E00C44711 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FBF21027C8DA0E00C44711 /* ViewController.swift */; };
-		24FBF21427C8DA0E00C44711 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24FBF21227C8DA0E00C44711 /* Main.storyboard */; };
 		24FBF21627C8DA0F00C44711 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24FBF21527C8DA0F00C44711 /* Assets.xcassets */; };
 		24FBF21927C8DA0F00C44711 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24FBF21727C8DA0F00C44711 /* LaunchScreen.storyboard */; };
 		24FBF22127C8DC8400C44711 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24FBF22027C8DC8400C44711 /* ProfileView.xib */; };
@@ -23,8 +21,6 @@
 		24FBF20927C8DA0E00C44711 /* Netology_IB_Instruments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Netology_IB_Instruments.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24FBF20C27C8DA0E00C44711 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24FBF20E27C8DA0E00C44711 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		24FBF21027C8DA0E00C44711 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		24FBF21327C8DA0E00C44711 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		24FBF21527C8DA0F00C44711 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		24FBF21827C8DA0F00C44711 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		24FBF21A27C8DA0F00C44711 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -66,12 +62,10 @@
 			children = (
 				24FBF20C27C8DA0E00C44711 /* AppDelegate.swift */,
 				24FBF20E27C8DA0E00C44711 /* SceneDelegate.swift */,
-				24FBF21027C8DA0E00C44711 /* ViewController.swift */,
-				24FBF22027C8DC8400C44711 /* ProfileView.xib */,
 				24FBF22427C8E2D400C44711 /* Profile.storyboard */,
 				24FBF22627C8E2EE00C44711 /* ProfileViewController.swift */,
+				24FBF22027C8DC8400C44711 /* ProfileView.xib */,
 				24FBF22227C8DE0400C44711 /* ProfileView.swift */,
-				24FBF21227C8DA0E00C44711 /* Main.storyboard */,
 				24FBF21527C8DA0F00C44711 /* Assets.xcassets */,
 				24FBF21727C8DA0F00C44711 /* LaunchScreen.storyboard */,
 				24FBF21A27C8DA0F00C44711 /* Info.plist */,
@@ -141,7 +135,6 @@
 				24FBF21927C8DA0F00C44711 /* LaunchScreen.storyboard in Resources */,
 				24FBF22527C8E2D400C44711 /* Profile.storyboard in Resources */,
 				24FBF21627C8DA0F00C44711 /* Assets.xcassets in Resources */,
-				24FBF21427C8DA0E00C44711 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,7 +146,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				24FBF22327C8DE0400C44711 /* ProfileView.swift in Sources */,
-				24FBF21127C8DA0E00C44711 /* ViewController.swift in Sources */,
 				24FBF22727C8E2EE00C44711 /* ProfileViewController.swift in Sources */,
 				24FBF20D27C8DA0E00C44711 /* AppDelegate.swift in Sources */,
 				24FBF20F27C8DA0E00C44711 /* SceneDelegate.swift in Sources */,
@@ -163,14 +155,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		24FBF21227C8DA0E00C44711 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				24FBF21327C8DA0E00C44711 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		24FBF21727C8DA0F00C44711 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -15,13 +15,28 @@
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nD6-HK-dEc" customClass="ProfileView" customModule="Netology_IB_Instruments" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="nD6-HK-dEc" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="3LT-6v-qeY"/>
+                            <constraint firstItem="nD6-HK-dEc" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" constant="34" id="D8f-1g-PQe"/>
+                            <constraint firstItem="nD6-HK-dEc" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="-44" id="hOt-Ma-eg5"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="nD6-HK-dEc" secondAttribute="trailing" id="xia-cP-nyC"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="profileView" destination="nD6-HK-dEc" id="gNQ-z8-9Jh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="36" y="97"/>
+            <point key="canvasLocation" x="34.782608695652179" y="96.428571428571431"/>
         </scene>
     </scenes>
     <resources>
