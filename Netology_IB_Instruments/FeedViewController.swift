@@ -16,7 +16,7 @@ class FeedViewController: UIViewController {
         
         
         let button = UIButton(frame: CGRect(x: 20, y: 700, width: 350, height: 57))
-        button.backgroundColor = .orange
+        button.backgroundColor = .systemOrange
         button.layer.cornerRadius = 12
         button.clipsToBounds = true
         button.setTitle("Перейти на пост", for: .normal)

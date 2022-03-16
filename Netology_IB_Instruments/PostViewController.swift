@@ -13,13 +13,23 @@ class PostViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let buttonIcon = UIImage(systemName: "info.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 14, weight: .medium))
+        let rightBarButton = UIBarButtonItem(title: "Info",
+                                             style: .plain,
+                                             target: self,
+                                             action: #selector(show))
+        rightBarButton.image = buttonIcon
+        self.navigationItem.rightBarButtonItem = rightBarButton
         setupView()
     }
     
     func setupView() {
-        self.view.backgroundColor = .orange
+        self.view.backgroundColor = .systemOrange
         self.navigationItem.title = titlePost
     }
     
-    
+    @objc func show(_ vc: PostViewController, sender: Any?) {
+        present(InfoViewController(), animated: true)
+    }
 }
