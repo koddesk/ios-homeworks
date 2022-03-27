@@ -13,6 +13,7 @@
 		246693EC27DFB0F4008CD205 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246693EB27DFB0F4008CD205 /* PostViewController.swift */; };
 		24B48BEE27E0996900AF9A4D /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B48BED27E0996900AF9A4D /* Post.swift */; };
 		24B48BF127E0A2C400AF9A4D /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B48BF027E0A2C400AF9A4D /* InfoViewController.swift */; };
+		24B4C0BF27E30DF100C70647 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B4C0BE27E30DF100C70647 /* ProfileHeaderView.swift */; };
 		24FBF20D27C8DA0E00C44711 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FBF20C27C8DA0E00C44711 /* AppDelegate.swift */; };
 		24FBF20F27C8DA0E00C44711 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FBF20E27C8DA0E00C44711 /* SceneDelegate.swift */; };
 		24FBF21127C8DA0E00C44711 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FBF21027C8DA0E00C44711 /* ViewController.swift */; };
@@ -27,6 +28,7 @@
 		246693EB27DFB0F4008CD205 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		24B48BED27E0996900AF9A4D /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		24B48BF027E0A2C400AF9A4D /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		24B4C0BE27E30DF100C70647 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		24FBF20927C8DA0E00C44711 /* Netology_IB_Instruments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Netology_IB_Instruments.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24FBF20C27C8DA0E00C44711 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24FBF20E27C8DA0E00C44711 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +49,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		24781D6427E75B4F003AF271 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				246693C727DF9C16008CD205 /* FeedViewController.swift */,
+				246693EB27DFB0F4008CD205 /* PostViewController.swift */,
+				24B48BED27E0996900AF9A4D /* Post.swift */,
+				24B48BF027E0A2C400AF9A4D /* InfoViewController.swift */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		24B4C0BD27E30D5E00C70647 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				24B4C0BE27E30DF100C70647 /* ProfileHeaderView.swift */,
+				246693C927DF9C34008CD205 /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		24FBF20027C8DA0E00C44711 = {
 			isa = PBXGroup;
 			children = (
@@ -70,13 +92,10 @@
 				24FBF20E27C8DA0E00C44711 /* SceneDelegate.swift */,
 				24FBF21027C8DA0E00C44711 /* ViewController.swift */,
 				24315D6127D0C99B006C46C8 /* TabBarController.swift */,
-				246693C727DF9C16008CD205 /* FeedViewController.swift */,
-				246693C927DF9C34008CD205 /* ProfileViewController.swift */,
-				246693EB27DFB0F4008CD205 /* PostViewController.swift */,
-				24B48BED27E0996900AF9A4D /* Post.swift */,
-				24B48BF027E0A2C400AF9A4D /* InfoViewController.swift */,
-				24FBF21527C8DA0F00C44711 /* Assets.xcassets */,
+				24781D6427E75B4F003AF271 /* Feed */,
+				24B4C0BD27E30D5E00C70647 /* Profile */,
 				24FBF21727C8DA0F00C44711 /* LaunchScreen.storyboard */,
+				24FBF21527C8DA0F00C44711 /* Assets.xcassets */,
 				24FBF21A27C8DA0F00C44711 /* Info.plist */,
 			);
 			path = Netology_IB_Instruments;
@@ -159,6 +178,7 @@
 				24B48BF127E0A2C400AF9A4D /* InfoViewController.swift in Sources */,
 				24315D6227D0C99B006C46C8 /* TabBarController.swift in Sources */,
 				246693C827DF9C16008CD205 /* FeedViewController.swift in Sources */,
+				24B4C0BF27E30DF100C70647 /* ProfileHeaderView.swift in Sources */,
 				24FBF20D27C8DA0E00C44711 /* AppDelegate.swift in Sources */,
 				24FBF20F27C8DA0E00C44711 /* SceneDelegate.swift in Sources */,
 			);
