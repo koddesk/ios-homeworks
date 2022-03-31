@@ -9,7 +9,6 @@ import UIKit
 
 class ProfileHeaderView: UIView {
     
-    
     lazy var avatarView: UIImageView = {
         let avatarView = UIImageView()
         avatarView.image = UIImage(named: "deadpool")
@@ -56,16 +55,6 @@ class ProfileHeaderView: UIView {
         return statusButton
     }()
     
-    lazy var newButton: UIButton = {
-        let newButton = UIButton()
-        newButton.setTitle("Новая кнопка", for: .normal)
-        newButton.setTitleColor(.white, for: .normal)
-        newButton.backgroundColor = .systemBlue
-        newButton.layer.cornerRadius = 12
-        newButton.translatesAutoresizingMaskIntoConstraints = false
-        return newButton
-    }()
-    
     override init (frame: CGRect) {
         super.init(frame: frame)
         
@@ -73,7 +62,6 @@ class ProfileHeaderView: UIView {
         addSubview(avatarView)
         addSubview(statusButton)
         addSubview(nameLabel)
-        addSubview(newButton)
         
         let avatarViewLeadingConstraint = avatarView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16)
         let avatarViewTopConstraint = avatarView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16)
@@ -91,11 +79,6 @@ class ProfileHeaderView: UIView {
         let statusLabelBottomConstraint = statusLabel.bottomAnchor.constraint(equalTo: statusButton.topAnchor, constant: -34)
         let statusLabelLeadingConstraint = statusLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor)
         
-        let newButtonBottomConstraint = newButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
-        let newButtonLeadingConstraint = newButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor)
-        let newButtonTrailingConstraint = newButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor)
-        let newButtonHeightConstraint = newButton.heightAnchor.constraint(equalToConstant: 50)
-        
         NSLayoutConstraint.activate([avatarViewLeadingConstraint,
                                      avatarViewTopConstraint,
                                      avatarViewHeightConstraint,
@@ -108,10 +91,6 @@ class ProfileHeaderView: UIView {
                                      statusButtonHeightConstraint,
                                      statusLabelBottomConstraint,
                                      statusLabelLeadingConstraint,
-                                     newButtonBottomConstraint,
-                                     newButtonLeadingConstraint,
-                                     newButtonTrailingConstraint,
-                                     newButtonHeightConstraint
                                     ])
     }
     
