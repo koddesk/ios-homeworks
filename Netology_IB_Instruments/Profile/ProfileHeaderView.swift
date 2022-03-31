@@ -49,9 +49,21 @@ class ProfileHeaderView: UIView {
         statusButton.layer.shadowRadius = 4
         statusButton.layer.shadowColor = UIColor.black.cgColor
         statusButton.layer.shadowOpacity = 0.7
+        statusButton.layer.shadowPath = UIBezierPath(rect: statusButton.bounds).cgPath
+        statusButton.layer.shouldRasterize = true
         statusButton.translatesAutoresizingMaskIntoConstraints = false
         statusButton.backgroundColor = .systemBlue
         return statusButton
+    }()
+    
+    lazy var newButton: UIButton = {
+        let newButton = UIButton()
+        newButton.setTitle("Новая кнопка", for: .normal)
+        newButton.setTitleColor(.white, for: .normal)
+        newButton.backgroundColor = .systemBlue
+        newButton.layer.cornerRadius = 12
+        newButton.translatesAutoresizingMaskIntoConstraints = false
+        return newButton
     }()
     
     override init (frame: CGRect) {
@@ -61,6 +73,7 @@ class ProfileHeaderView: UIView {
         addSubview(avatarView)
         addSubview(statusButton)
         addSubview(nameLabel)
+        addSubview(newButton)
         
         let avatarViewLeadingConstraint = avatarView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16)
         let avatarViewTopConstraint = avatarView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16)
@@ -74,11 +87,32 @@ class ProfileHeaderView: UIView {
         let statusButtonCenterXConstraint = statusButton.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor)
         let statusButtonTopConstraint = statusButton.topAnchor.constraint(equalTo: avatarView.bottomAnchor, constant: 16)
         let statusButtonHeightConstraint = statusButton.heightAnchor.constraint(equalToConstant: 50)
+        
         let statusLabelBottomConstraint = statusLabel.bottomAnchor.constraint(equalTo: statusButton.topAnchor, constant: -34)
         let statusLabelLeadingConstraint = statusLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor)
         
+        let newButtonBottomConstraint = newButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
+        let newButtonLeadingConstraint = newButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor)
+        let newButtonTrailingConstraint = newButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor)
+        let newButtonHeightConstraint = newButton.heightAnchor.constraint(equalToConstant: 50)
         
-        NSLayoutConstraint.activate([avatarViewLeadingConstraint, avatarViewTopConstraint, avatarViewHeightConstraint, avatarViewWidthConstraint, nameLabelTopConstraint, nameLabelLeadingConstraint, statusButtonLeadingConstraint, statusButtonCenterXConstraint, statusButtonTopConstraint, statusButtonHeightConstraint, statusLabelBottomConstraint, statusLabelLeadingConstraint])
+        NSLayoutConstraint.activate([avatarViewLeadingConstraint,
+                                     avatarViewTopConstraint,
+                                     avatarViewHeightConstraint,
+                                     avatarViewWidthConstraint,
+                                     nameLabelTopConstraint,
+                                     nameLabelLeadingConstraint,
+                                     statusButtonLeadingConstraint,
+                                     statusButtonCenterXConstraint,
+                                     statusButtonTopConstraint,
+                                     statusButtonHeightConstraint,
+                                     statusLabelBottomConstraint,
+                                     statusLabelLeadingConstraint,
+                                     newButtonBottomConstraint,
+                                     newButtonLeadingConstraint,
+                                     newButtonTrailingConstraint,
+                                     newButtonHeightConstraint
+                                    ])
     }
     
     required init?(coder: NSCoder) {
