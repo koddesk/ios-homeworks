@@ -9,7 +9,6 @@ import UIKit
 
 class ProfileHeaderView: UIView {
     
-    
     lazy var avatarView: UIImageView = {
         let avatarView = UIImageView()
         avatarView.image = UIImage(named: "deadpool")
@@ -49,6 +48,8 @@ class ProfileHeaderView: UIView {
         statusButton.layer.shadowRadius = 4
         statusButton.layer.shadowColor = UIColor.black.cgColor
         statusButton.layer.shadowOpacity = 0.7
+        statusButton.layer.shadowPath = UIBezierPath(rect: statusButton.bounds).cgPath
+        statusButton.layer.shouldRasterize = true
         statusButton.translatesAutoresizingMaskIntoConstraints = false
         statusButton.backgroundColor = .systemBlue
         return statusButton
@@ -74,11 +75,23 @@ class ProfileHeaderView: UIView {
         let statusButtonCenterXConstraint = statusButton.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor)
         let statusButtonTopConstraint = statusButton.topAnchor.constraint(equalTo: avatarView.bottomAnchor, constant: 16)
         let statusButtonHeightConstraint = statusButton.heightAnchor.constraint(equalToConstant: 50)
+        
         let statusLabelBottomConstraint = statusLabel.bottomAnchor.constraint(equalTo: statusButton.topAnchor, constant: -34)
         let statusLabelLeadingConstraint = statusLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor)
         
-        
-        NSLayoutConstraint.activate([avatarViewLeadingConstraint, avatarViewTopConstraint, avatarViewHeightConstraint, avatarViewWidthConstraint, nameLabelTopConstraint, nameLabelLeadingConstraint, statusButtonLeadingConstraint, statusButtonCenterXConstraint, statusButtonTopConstraint, statusButtonHeightConstraint, statusLabelBottomConstraint, statusLabelLeadingConstraint])
+        NSLayoutConstraint.activate([avatarViewLeadingConstraint,
+                                     avatarViewTopConstraint,
+                                     avatarViewHeightConstraint,
+                                     avatarViewWidthConstraint,
+                                     nameLabelTopConstraint,
+                                     nameLabelLeadingConstraint,
+                                     statusButtonLeadingConstraint,
+                                     statusButtonCenterXConstraint,
+                                     statusButtonTopConstraint,
+                                     statusButtonHeightConstraint,
+                                     statusLabelBottomConstraint,
+                                     statusLabelLeadingConstraint,
+                                    ])
     }
     
     required init?(coder: NSCoder) {
