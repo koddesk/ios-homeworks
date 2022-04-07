@@ -9,8 +9,6 @@ import UIKit
 
 class FeedViewController: UIViewController {
     
-    var post = Post(title: "Мой пост")
-    
     lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.backgroundColor = .white
@@ -80,6 +78,5 @@ class FeedViewController: UIViewController {
     @objc func didTapButton(_ sender: UIButton!) {
         let postViewController = PostViewController()
         self.navigationController?.pushViewController(postViewController, animated: true)
-        postViewController.titlePost = post.title
     }
 }

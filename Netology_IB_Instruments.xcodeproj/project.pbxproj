@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		24315D6227D0C99B006C46C8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24315D6127D0C99B006C46C8 /* TabBarController.swift */; };
+		2456282427FEFF19005F78A1 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2456282327FEFF19005F78A1 /* PostTableViewCell.swift */; };
 		246693C827DF9C16008CD205 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246693C727DF9C16008CD205 /* FeedViewController.swift */; };
 		246693CA27DF9C34008CD205 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246693C927DF9C34008CD205 /* ProfileViewController.swift */; };
 		246693EC27DFB0F4008CD205 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246693EB27DFB0F4008CD205 /* PostViewController.swift */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		24315D6127D0C99B006C46C8 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		2456282327FEFF19005F78A1 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		246693C727DF9C16008CD205 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		246693C927DF9C34008CD205 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		246693EB27DFB0F4008CD205 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
@@ -51,12 +53,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2456282127FEED53005F78A1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				24FBF21727C8DA0F00C44711 /* LaunchScreen.storyboard */,
+				24FBF21527C8DA0F00C44711 /* Assets.xcassets */,
+				24FBF21A27C8DA0F00C44711 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		2456282227FEEE3B005F78A1 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				24FBF20C27C8DA0E00C44711 /* AppDelegate.swift */,
+				24FBF20E27C8DA0E00C44711 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
 		24781D6427E75B4F003AF271 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
 				246693C727DF9C16008CD205 /* FeedViewController.swift */,
 				246693EB27DFB0F4008CD205 /* PostViewController.swift */,
-				24B48BED27E0996900AF9A4D /* Post.swift */,
 				24B48BF027E0A2C400AF9A4D /* InfoViewController.swift */,
 			);
 			path = Feed;
@@ -68,6 +88,8 @@
 				24B4C0BE27E30DF100C70647 /* ProfileHeaderView.swift */,
 				246693C927DF9C34008CD205 /* ProfileViewController.swift */,
 				24F3CD2027FB117000F37612 /* LogInViewController.swift */,
+				2456282327FEFF19005F78A1 /* PostTableViewCell.swift */,
+				24B48BED27E0996900AF9A4D /* Post.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -91,15 +113,12 @@
 		24FBF20B27C8DA0E00C44711 /* Netology_IB_Instruments */ = {
 			isa = PBXGroup;
 			children = (
-				24FBF20C27C8DA0E00C44711 /* AppDelegate.swift */,
-				24FBF20E27C8DA0E00C44711 /* SceneDelegate.swift */,
+				2456282227FEEE3B005F78A1 /* Application */,
 				24FBF21027C8DA0E00C44711 /* ViewController.swift */,
 				24315D6127D0C99B006C46C8 /* TabBarController.swift */,
 				24781D6427E75B4F003AF271 /* Feed */,
 				24B4C0BD27E30D5E00C70647 /* Profile */,
-				24FBF21727C8DA0F00C44711 /* LaunchScreen.storyboard */,
-				24FBF21527C8DA0F00C44711 /* Assets.xcassets */,
-				24FBF21A27C8DA0F00C44711 /* Info.plist */,
+				2456282127FEED53005F78A1 /* Resources */,
 			);
 			path = Netology_IB_Instruments;
 			sourceTree = "<group>";
@@ -185,6 +204,7 @@
 				24B4C0BF27E30DF100C70647 /* ProfileHeaderView.swift in Sources */,
 				24FBF20D27C8DA0E00C44711 /* AppDelegate.swift in Sources */,
 				24FBF20F27C8DA0E00C44711 /* SceneDelegate.swift in Sources */,
+				2456282427FEFF19005F78A1 /* PostTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,7 +347,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UJRW24XH5L;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Netology_IB_Instruments/Info.plist;
+				INFOPLIST_FILE = Netology_IB_Instruments/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -354,7 +374,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UJRW24XH5L;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Netology_IB_Instruments/Info.plist;
+				INFOPLIST_FILE = Netology_IB_Instruments/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

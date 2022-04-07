@@ -18,6 +18,7 @@ class TabBarController: UITabBarController {
         
         setupVCs()
     }
+    
     func setupVCs() {
         viewControllers = [
             createNavController(for: FeedViewController(), title: NSLocalizedString("Лента", comment: ""), image: UIImage(systemName: "house")!),
@@ -43,5 +44,4 @@ class TabBarController: UITabBarController {
         rootViewController.navigationItem.title = title
         return navController
     }
-    
 }
