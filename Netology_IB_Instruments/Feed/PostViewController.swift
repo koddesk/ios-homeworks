@@ -21,6 +21,7 @@ class PostViewController: UIViewController {
                                              action: #selector(show))
         rightBarButton.image = buttonIcon
         self.navigationItem.rightBarButtonItem = rightBarButton
+        
         setupView()
     }
     
