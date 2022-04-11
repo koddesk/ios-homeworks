@@ -62,36 +62,8 @@ class ProfileHeaderView: UIView {
         addSubview(avatarView)
         addSubview(statusButton)
         addSubview(nameLabel)
+        setConstraints()
         
-        let avatarViewLeadingConstraint = avatarView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16)
-        let avatarViewTopConstraint = avatarView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16)
-        let avatarViewHeightConstraint = avatarView.heightAnchor.constraint(equalToConstant: 100)
-        let avatarViewWidthConstraint = avatarView.widthAnchor.constraint(equalToConstant: 100)
-        
-        let nameLabelTopConstraint = nameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27)
-        let nameLabelLeadingConstraint = nameLabel.leadingAnchor.constraint(equalTo: avatarView.trailingAnchor, constant: 20)
-        
-        let statusButtonLeadingConstraint = statusButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16)
-        let statusButtonCenterXConstraint = statusButton.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor)
-        let statusButtonTopConstraint = statusButton.topAnchor.constraint(equalTo: avatarView.bottomAnchor, constant: 16)
-        let statusButtonHeightConstraint = statusButton.heightAnchor.constraint(equalToConstant: 50)
-        
-        let statusLabelBottomConstraint = statusLabel.bottomAnchor.constraint(equalTo: statusButton.topAnchor, constant: -34)
-        let statusLabelLeadingConstraint = statusLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor)
-        
-        NSLayoutConstraint.activate([avatarViewLeadingConstraint,
-                                     avatarViewTopConstraint,
-                                     avatarViewHeightConstraint,
-                                     avatarViewWidthConstraint,
-                                     nameLabelTopConstraint,
-                                     nameLabelLeadingConstraint,
-                                     statusButtonLeadingConstraint,
-                                     statusButtonCenterXConstraint,
-                                     statusButtonTopConstraint,
-                                     statusButtonHeightConstraint,
-                                     statusLabelBottomConstraint,
-                                     statusLabelLeadingConstraint,
-                                    ])
     }
     
     required init?(coder: NSCoder) {
@@ -101,5 +73,40 @@ class ProfileHeaderView: UIView {
     @objc func buttonPressed() {
         guard let status = statusLabel.text else { return }
         print(status)
+    }
+}
+
+extension ProfileHeaderView {
+    
+    private func setConstraints() {
+        
+        NSLayoutConstraint.activate([
+            avatarView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            avatarView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
+            avatarView.heightAnchor.constraint(equalToConstant: 100),
+            avatarView.widthAnchor.constraint(equalToConstant: 100)
+        ])
+        
+        NSLayoutConstraint.activate([
+            nameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
+            nameLabel.leadingAnchor.constraint(equalTo: avatarView.trailingAnchor, constant: 20)
+        ])
+        
+        NSLayoutConstraint.activate([
+            nameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
+            nameLabel.leadingAnchor.constraint(equalTo: avatarView.trailingAnchor, constant: 20)
+        ])
+        
+        NSLayoutConstraint.activate([
+            statusButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            statusButton.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
+            statusButton.topAnchor.constraint(equalTo: avatarView.bottomAnchor, constant: 16),
+            statusButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+        
+        NSLayoutConstraint.activate([
+            statusLabel.bottomAnchor.constraint(equalTo: statusButton.topAnchor, constant: -34),
+            statusLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor)
+        ])
     }
 }
