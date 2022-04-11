@@ -99,6 +99,9 @@ class LogInViewController: UIViewController {
         
         configure()
         setConstraints()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapKeyboardOff(_:)))
+        view.addGestureRecognizer(tap)
     }
     
     private func configure() {
@@ -114,6 +117,26 @@ class LogInViewController: UIViewController {
     @objc func didTapButton() {
         let profileViewController = ProfileViewController()
         self.navigationController?.pushViewController(profileViewController, animated: true)
+    }
+    
+    @objc func tapKeyboardOff(_ sender: Any) {
+        loginTextField.resignFirstResponder()
+        passTextField.resignFirstResponder()
+    }
+    
+    @objc private func keyboardShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            scrollView.contentInset.bottom = keyboardSize.height
+            scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0,
+                                                                    left: 0,
+                                                                    bottom: keyboardSize.height,
+                                                                    right: 0)
+        }
+    }
+    
+    @objc private func keyboardHide(notification: NSNotification) {
+        scrollView.contentInset.bottom = .zero
+        scrollView.verticalScrollIndicatorInsets = .zero
     }
 }
 
