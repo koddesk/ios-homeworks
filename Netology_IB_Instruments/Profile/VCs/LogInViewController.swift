@@ -94,17 +94,17 @@ class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .white
         
-        configure()
+        setupView()
         setConstraints()
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(tapKeyboardOff(_:)))
-        view.addGestureRecognizer(tap)
     }
     
-    private func configure() {
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = true
+    }
+    
+    private func setupView() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(logButton)
@@ -112,6 +112,9 @@ class LogInViewController: UIViewController {
         contentView.addSubview(stackView)
         stackView.addArrangedSubview(loginTextField)
         stackView.addArrangedSubview(passTextField)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapKeyboardOff(_:)))
+        view.addGestureRecognizer(tap)
     }
     
     @objc func didTapButton() {
@@ -140,6 +143,7 @@ class LogInViewController: UIViewController {
     }
 }
 
+//MARK: - SetConstraints
 extension LogInViewController {
     
     private func setConstraints() {
