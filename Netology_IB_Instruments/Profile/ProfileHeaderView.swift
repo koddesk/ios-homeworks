@@ -76,6 +76,8 @@ class ProfileHeaderView: UIView {
     }
 }
 
+//MARK: - SetConstraints
+
 extension ProfileHeaderView {
     
     private func setConstraints() {

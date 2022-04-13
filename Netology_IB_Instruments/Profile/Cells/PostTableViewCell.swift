@@ -93,8 +93,7 @@ class PostTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setupView()
-        setBackViewConstraints()
-        setPostStackViewConstraints()
+        setConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -122,18 +121,19 @@ class PostTableViewCell: UITableViewCell {
     }
 }
 
+//MARK: - SetConstraints
+
 extension PostTableViewCell {
     
-    private func setBackViewConstraints() {
+    private func setConstraints() {
+        
         NSLayoutConstraint.activate([
             backView.topAnchor.constraint(equalTo: contentView.topAnchor),
             backView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             backView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             backView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
-    }
-    
-    private func setPostStackViewConstraints() {
+        
         NSLayoutConstraint.activate([
             postStackView.topAnchor.constraint(equalTo: backView.topAnchor),
             postStackView.leadingAnchor.constraint(equalTo: backView.leadingAnchor, constant: 16),
