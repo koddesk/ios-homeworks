@@ -24,6 +24,7 @@ class ProfileViewController: UIViewController {
         tableView.delegate = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultCell")
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "ArticleCell")
+        tableView.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: "ProfileHeaderView")
         tableView.backgroundColor = .systemGray6
         tableView.layer.borderColor = UIColor.lightGray.cgColor
         tableView.layer.borderWidth = 0.5
@@ -103,15 +104,12 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        var headerView = UIView()
-        if section == 0 {
-            headerView = ProfileHeaderView()
-        }
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ProfileHeaderView") as! ProfileHeaderView
         return headerView
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return  250
+        return  200
     }
 }
 
