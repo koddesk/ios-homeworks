@@ -94,14 +94,17 @@ class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .white
         
-        configure()
+        setupView()
         setConstraints()
     }
     
-    private func configure() {
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = true
+    }
+    
+    private func setupView() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(logButton)
@@ -109,14 +112,38 @@ class LogInViewController: UIViewController {
         contentView.addSubview(stackView)
         stackView.addArrangedSubview(loginTextField)
         stackView.addArrangedSubview(passTextField)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapKeyboardOff(_:)))
+        view.addGestureRecognizer(tap)
     }
     
     @objc func didTapButton() {
         let profileViewController = ProfileViewController()
         self.navigationController?.pushViewController(profileViewController, animated: true)
     }
+    
+    @objc func tapKeyboardOff(_ sender: Any) {
+        loginTextField.resignFirstResponder()
+        passTextField.resignFirstResponder()
+    }
+    
+    @objc private func keyboardShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            scrollView.contentInset.bottom = keyboardSize.height
+            scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0,
+                                                                    left: 0,
+                                                                    bottom: keyboardSize.height,
+                                                                    right: 0)
+        }
+    }
+    
+    @objc private func keyboardHide(notification: NSNotification) {
+        scrollView.contentInset.bottom = .zero
+        scrollView.verticalScrollIndicatorInsets = .zero
+    }
 }
 
+//MARK: - SetConstraints
 extension LogInViewController {
     
     private func setConstraints() {

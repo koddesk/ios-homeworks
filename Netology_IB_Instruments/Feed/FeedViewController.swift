@@ -9,8 +9,6 @@ import UIKit
 
 class FeedViewController: UIViewController {
     
-    var post = Post(title: "Мой пост")
-    
     lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.backgroundColor = .white
@@ -23,7 +21,7 @@ class FeedViewController: UIViewController {
     
     lazy var firstButton: UIButton = {
         let firstButton = UIButton()
-        firstButton.setTitle("Перейти на пост", for: .normal)
+        firstButton.setTitle("Анимация вью", for: .normal)
         firstButton.backgroundColor = .systemOrange
         firstButton.layer.cornerRadius = 12
         firstButton.layer.shadowColor = UIColor.black.cgColor
@@ -48,7 +46,7 @@ class FeedViewController: UIViewController {
         secondButton.layer.shadowOpacity = 0.7
         secondButton.layer.shadowPath = UIBezierPath(rect: secondButton.bounds).cgPath
         secondButton.layer.shouldRasterize = true
-        secondButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        secondButton.addTarget(self, action: #selector(didTapSecButton), for: .touchUpInside)
         secondButton.translatesAutoresizingMaskIntoConstraints = false
         return secondButton
     }()
@@ -78,8 +76,12 @@ class FeedViewController: UIViewController {
     }
     
     @objc func didTapButton(_ sender: UIButton!) {
+        let gesturesAndAnimationsViewController = GesturesAndAnimationsViewController()
+        navigationController?.pushViewController(gesturesAndAnimationsViewController, animated: true)
+    }
+    
+    @objc func didTapSecButton(_ sender: UIButton!) {
         let postViewController = PostViewController()
         self.navigationController?.pushViewController(postViewController, animated: true)
-        postViewController.titlePost = post.title
     }
 }
