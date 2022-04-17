@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		24315D6227D0C99B006C46C8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24315D6127D0C99B006C46C8 /* TabBarController.swift */; };
+		24469FD8280B286800738F94 /* GesturesAndAnimationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24469FD7280B286800738F94 /* GesturesAndAnimationsViewController.swift */; };
 		2456282427FEFF19005F78A1 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2456282327FEFF19005F78A1 /* PostTableViewCell.swift */; };
 		246693C827DF9C16008CD205 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246693C727DF9C16008CD205 /* FeedViewController.swift */; };
 		246693CA27DF9C34008CD205 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246693C927DF9C34008CD205 /* ProfileViewController.swift */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		24315D6127D0C99B006C46C8 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		24469FD7280B286800738F94 /* GesturesAndAnimationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GesturesAndAnimationsViewController.swift; sourceTree = "<group>"; };
 		2456282327FEFF19005F78A1 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		246693C727DF9C16008CD205 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		246693C927DF9C34008CD205 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				246693C727DF9C16008CD205 /* FeedViewController.swift */,
 				246693EB27DFB0F4008CD205 /* PostViewController.swift */,
 				24B48BF027E0A2C400AF9A4D /* InfoViewController.swift */,
+				24469FD7280B286800738F94 /* GesturesAndAnimationsViewController.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 				24A2E11228059C970015FD07 /* PhotosTableViewCell.swift in Sources */,
 				24FBF20D27C8DA0E00C44711 /* AppDelegate.swift in Sources */,
 				24A2E1162805B1D70015FD07 /* PhotosCollectionViewCell.swift in Sources */,
+				24469FD8280B286800738F94 /* GesturesAndAnimationsViewController.swift in Sources */,
 				24A2E1142805ABBF0015FD07 /* PhotosViewController.swift in Sources */,
 				24FBF20F27C8DA0E00C44711 /* SceneDelegate.swift in Sources */,
 				2456282427FEFF19005F78A1 /* PostTableViewCell.swift in Sources */,
