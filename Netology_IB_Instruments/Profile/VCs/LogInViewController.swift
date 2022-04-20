@@ -98,6 +98,12 @@ class LogInViewController: UIViewController {
         
         setupView()
         setConstraints()
+        
+        registerForKeyboardNotifications()
+    }
+    
+    deinit {
+        removeKeyboardNotifications()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -117,29 +123,34 @@ class LogInViewController: UIViewController {
         view.addGestureRecognizer(tap)
     }
     
-    @objc func didTapButton() {
-        let profileViewController = ProfileViewController()
-        self.navigationController?.pushViewController(profileViewController, animated: true)
+    private func registerForKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(kbWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(kbWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    @objc func tapKeyboardOff(_ sender: Any) {
+    private func removeKeyboardNotifications() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc private func kbWillShow(_ notification: Notification) {
+        let userInfo = notification.userInfo
+        let kbFrameSize = (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        scrollView.contentOffset = CGPoint(x: 0, y: kbFrameSize.height - logButton.frame.height)
+    }
+    
+    @objc private func kbWillHide() {
+        scrollView.contentOffset = CGPoint.zero
+    }
+    
+    @objc private func tapKeyboardOff(_ sender: Any) {
         loginTextField.resignFirstResponder()
         passTextField.resignFirstResponder()
     }
     
-    @objc private func keyboardShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            scrollView.contentInset.bottom = keyboardSize.height
-            scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0,
-                                                                    left: 0,
-                                                                    bottom: keyboardSize.height,
-                                                                    right: 0)
-        }
-    }
-    
-    @objc private func keyboardHide(notification: NSNotification) {
-        scrollView.contentInset.bottom = .zero
-        scrollView.verticalScrollIndicatorInsets = .zero
+    @objc private func didTapButton() {
+        let profileViewController = ProfileViewController()
+        navigationController?.pushViewController(profileViewController, animated: true)
     }
 }
 
