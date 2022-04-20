@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileHeaderView: UIView {
+class ProfileHeaderView: UITableViewHeaderFooterView {
     
     lazy var avatarView: UIImageView = {
         let avatarView = UIImageView()
@@ -55,15 +55,14 @@ class ProfileHeaderView: UIView {
         return statusButton
     }()
     
-    override init (frame: CGRect) {
-        super.init(frame: frame)
+    override init (reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
         
         addSubview(statusLabel)
         addSubview(avatarView)
         addSubview(statusButton)
         addSubview(nameLabel)
         setConstraints()
-        
     }
     
     required init?(coder: NSCoder) {
