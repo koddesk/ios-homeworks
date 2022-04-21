@@ -13,9 +13,10 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         let avatarView = UIImageView()
         avatarView.image = UIImage(named: "deadpool")
         avatarView.layer.borderWidth = 3
+        avatarView.clipsToBounds = true
         avatarView.layer.borderColor = UIColor.white.cgColor
         avatarView.layer.cornerRadius = 50
-        avatarView.layer.masksToBounds = true
+        avatarView.isUserInteractionEnabled = true
         avatarView.translatesAutoresizingMaskIntoConstraints = false
         return avatarView
     }()
@@ -41,7 +42,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     private lazy var statusTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Введите что-то..."
+        textField.placeholder = "Введите что-то"
         textField.returnKeyType = .done
         textField.autocapitalizationType = .words
         textField.font = .systemFont(ofSize: 15)
@@ -55,18 +56,18 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         return textField
     }()
     
-    lazy var statusButton: UIButton = {
+   private lazy var statusButton: UIButton = {
         let statusButton = UIButton()
         statusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         statusButton.setTitle("Set status", for: .normal)
         statusButton.setTitleColor(.white, for: .normal)
         statusButton.layer.cornerRadius = 12
         statusButton.layer.shadowOffset = CGSize(width: 4, height: 4.0)
+        statusButton.clipsToBounds = true
         statusButton.layer.shadowRadius = 4
         statusButton.layer.shadowColor = UIColor.black.cgColor
         statusButton.layer.shadowOpacity = 0.7
         statusButton.layer.shadowPath = UIBezierPath(rect: statusButton.bounds).cgPath
-        statusButton.layer.shouldRasterize = true
         statusButton.translatesAutoresizingMaskIntoConstraints = false
         statusButton.backgroundColor = .systemBlue
         return statusButton
@@ -74,20 +75,24 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     override init (reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        
+    
+        setupView()
+        setConstraints()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupView() {
         addSubview(statusLabel)
         addSubview(statusTextField)
         addSubview(avatarImageView)
         addSubview(statusButton)
         addSubview(nameLabel)
-        setConstraints()
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapKeyboardOff(_:)))
         self.addGestureRecognizer(tap)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     @objc func tapKeyboardOff(_ sender: Any) {

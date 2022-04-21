@@ -10,21 +10,21 @@ class DetailedPostViewController: UIViewController {
     
     var selectedDataAuthor, selectedDataDescription, selectedDataImage, selectedId: String?
     var selectedDataLikes, selectedDataViews: Int?
-
+    
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.backgroundColor = .white
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
-
+    
     private lazy var contentView: UIView = {
         let contentView = UIView()
         contentView.backgroundColor = .white
         contentView.translatesAutoresizingMaskIntoConstraints = false
         return contentView
     }()
-
+    
     private lazy var stackViewPost: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -32,7 +32,7 @@ class DetailedPostViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-
+    
     private lazy var stackViewLikesViews: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -43,7 +43,7 @@ class DetailedPostViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-
+    
     private lazy var authorLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .white
@@ -57,7 +57,7 @@ class DetailedPostViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
+    
     private lazy var imageImageView: UIImageView = {
         let imageView = UIImageView()
         if let image = selectedDataImage {
@@ -68,7 +68,7 @@ class DetailedPostViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-
+    
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -81,7 +81,7 @@ class DetailedPostViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
+    
     lazy var likesLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .white
@@ -94,7 +94,7 @@ class DetailedPostViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
+    
     private lazy var viewsLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .white
@@ -107,9 +107,9 @@ class DetailedPostViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
+    
     private let tapGestureRecognizer = UITapGestureRecognizer()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -118,38 +118,38 @@ class DetailedPostViewController: UIViewController {
         setupGesture()
         setConstraints()
     }
-
+    
     private func setupNavigationBar() {
         self.navigationController?.navigationBar.prefersLargeTitles = false
         self.navigationItem.title = "Пост"
     }
-
+    
     private func setupView() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(stackViewPost)
-
+        
         scrollView.addSubview(stackViewLikesViews)
-
+        
         stackViewPost.addArrangedSubview(authorLabel)
         stackViewPost.addArrangedSubview(imageImageView)
         stackViewPost.addArrangedSubview(descriptionLabel)
-
+        
         stackViewLikesViews.addArrangedSubview(likesLabel)
         stackViewLikesViews.addArrangedSubview(viewsLabel)
-
+        
         view.backgroundColor = .white
-
+        
     }
-
+    
     private func setupGesture() {
         self.tapGestureRecognizer.addTarget(self, action: #selector(self.tapLiked(_ :)))
         self.likesLabel.addGestureRecognizer(self.tapGestureRecognizer)
     }
-
+    
     @objc func tapLiked(_ gestureRecognizer: UITapGestureRecognizer) {
         guard self.tapGestureRecognizer === gestureRecognizer else { return }
-
+        
         for i in 0...dataSource.count - 1 {
             if dataSource[i].id == selectedId {
                 dataSource[i].likes += 1

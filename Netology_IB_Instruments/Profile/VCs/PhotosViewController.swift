@@ -111,6 +111,11 @@ extension PhotosViewController:  UICollectionViewDelegateFlowLayout {
         let spacing = ( collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.minimumInteritemSpacing
         return self.itemSize(for: collectionView.frame.width, with: spacing ?? 0)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let viewController = AdditionalPhotosViewController()
+        viewController.selectedImage = collectionDataSource[indexPath.row].image
+        navigationController?.pushViewController(viewController, animated: true)}
 }
 
 //MARK: - SetConstraints

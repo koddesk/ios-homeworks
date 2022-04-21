@@ -66,7 +66,7 @@ class ProfileViewController: UIViewController, TapLikeDelegate {
     
     func tapLikeLabel() {
         liked.toggle()
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
 }
 
