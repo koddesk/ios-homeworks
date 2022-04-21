@@ -10,7 +10,9 @@
 		24315D6227D0C99B006C46C8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24315D6127D0C99B006C46C8 /* TabBarController.swift */; };
 		2432CA0B2810271F0035766F /* VerificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2432CA0A2810271F0035766F /* VerificationModel.swift */; };
 		2432CA0D281028100035766F /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2432CA0C281028100035766F /* UIView + Extensions.swift */; };
+		2432CA13281064A00035766F /* TapLikeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2432CA12281064A00035766F /* TapLikeDelegate.swift */; };
 		24469FD8280B286800738F94 /* GesturesAndAnimationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24469FD7280B286800738F94 /* GesturesAndAnimationsViewController.swift */; };
+		244EB02F2810930E00BA75F6 /* DetailedPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244EB02E2810930E00BA75F6 /* DetailedPostViewController.swift */; };
 		2456282427FEFF19005F78A1 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2456282327FEFF19005F78A1 /* PostTableViewCell.swift */; };
 		246693C827DF9C16008CD205 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246693C727DF9C16008CD205 /* FeedViewController.swift */; };
 		246693CA27DF9C34008CD205 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246693C927DF9C34008CD205 /* ProfileViewController.swift */; };
@@ -33,7 +35,9 @@
 		24315D6127D0C99B006C46C8 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		2432CA0A2810271F0035766F /* VerificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationModel.swift; sourceTree = "<group>"; };
 		2432CA0C281028100035766F /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
+		2432CA12281064A00035766F /* TapLikeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapLikeDelegate.swift; sourceTree = "<group>"; };
 		24469FD7280B286800738F94 /* GesturesAndAnimationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GesturesAndAnimationsViewController.swift; sourceTree = "<group>"; };
+		244EB02E2810930E00BA75F6 /* DetailedPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedPostViewController.swift; sourceTree = "<group>"; };
 		2456282327FEFF19005F78A1 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		246693C727DF9C16008CD205 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		246693C927DF9C34008CD205 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +77,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		2432CA11281064600035766F /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				2432CA12281064A00035766F /* TapLikeDelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		2456282127FEED53005F78A1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				246693C927DF9C34008CD205 /* ProfileViewController.swift */,
+				244EB02E2810930E00BA75F6 /* DetailedPostViewController.swift */,
 				24A2E1132805ABBF0015FD07 /* PhotosViewController.swift */,
 				24F3CD2027FB117000F37612 /* LogInViewController.swift */,
 			);
@@ -159,6 +172,7 @@
 				24315D6127D0C99B006C46C8 /* TabBarController.swift */,
 				24781D6427E75B4F003AF271 /* Feed */,
 				24B4C0BD27E30D5E00C70647 /* Profile */,
+				2432CA11281064600035766F /* Protocols */,
 				2432CA0E28102AC60035766F /* Extensions */,
 				2456282127FEED53005F78A1 /* Resources */,
 			);
@@ -235,6 +249,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2432CA13281064A00035766F /* TapLikeDelegate.swift in Sources */,
 				246693CA27DF9C34008CD205 /* ProfileViewController.swift in Sources */,
 				24F3CD2127FB117000F37612 /* LogInViewController.swift in Sources */,
 				246693EC27DFB0F4008CD205 /* PostViewController.swift in Sources */,
@@ -242,6 +257,7 @@
 				24B48BF127E0A2C400AF9A4D /* InfoViewController.swift in Sources */,
 				24315D6227D0C99B006C46C8 /* TabBarController.swift in Sources */,
 				246693C827DF9C16008CD205 /* FeedViewController.swift in Sources */,
+				244EB02F2810930E00BA75F6 /* DetailedPostViewController.swift in Sources */,
 				24B4C0BF27E30DF100C70647 /* ProfileHeaderView.swift in Sources */,
 				24A2E11228059C970015FD07 /* PhotosTableViewCell.swift in Sources */,
 				24FBF20D27C8DA0E00C44711 /* AppDelegate.swift in Sources */,

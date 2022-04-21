@@ -9,6 +9,31 @@ import UIKit
 
 class PhotosTableViewCell: UITableViewCell {
     
+    private enum Constants {
+        static let itemCount: CGFloat = 4
+    }
+    
+    private lazy var layout: UICollectionViewFlowLayout = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumInteritemSpacing = 8
+        layout.minimumLineSpacing = 8
+        
+        return layout
+    }()
+        
+    private lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.layout)
+        collectionView.backgroundColor = .clear
+        collectionView.clipsToBounds = true
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: "PhotosCollectionViewCell")
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "DefaultCell")
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        return collectionView
+    }()
+    
     private lazy var backView: UIView = {
         let view = UIView()
         view.clipsToBounds = true
@@ -34,58 +59,7 @@ class PhotosTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    private lazy var photosStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
-        stackView.spacing = 8
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
-    
-    private lazy var firstImageView: UIImageView = {
-        let image = UIImage(named: "1")
-        let imageCollectionView = UIImageView()
-        imageCollectionView.image = image
-        imageCollectionView.clipsToBounds = true
-        imageCollectionView.contentMode = .scaleAspectFill
-        imageCollectionView.layer.cornerRadius = 6
-        imageCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        return imageCollectionView
-    }()
-    
-    private lazy var secondImageView: UIImageView = {
-        let image = UIImage(named: "2")
-        let imageCollectionView = UIImageView()
-        imageCollectionView.image = image
-        imageCollectionView.clipsToBounds = true
-        imageCollectionView.contentMode = .scaleAspectFill
-        imageCollectionView.layer.cornerRadius = 6
-        imageCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        return imageCollectionView
-    }()
-    
-    private lazy var thirdImageView: UIImageView = {
-        let image = UIImage(named: "3")
-        let imageCollectionView = UIImageView()
-        imageCollectionView.image = image
-        imageCollectionView.clipsToBounds = true
-        imageCollectionView.contentMode = .scaleAspectFill
-        imageCollectionView.layer.cornerRadius = 6
-        imageCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        return imageCollectionView
-    }()
-    
-    private lazy var fourImageView: UIImageView = {
-        let image = UIImage(named: "4")
-        let imageCollectionView = UIImageView()
-        imageCollectionView.image = image
-        imageCollectionView.clipsToBounds = true
-        imageCollectionView.contentMode = .scaleAspectFill
-        imageCollectionView.layer.cornerRadius = 6
-        imageCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        return imageCollectionView
-    }()
+    private let collectionViewWidth = (UIScreen.main.bounds.width - 48) / Constants.itemCount
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -104,16 +78,38 @@ class PhotosTableViewCell: UITableViewCell {
         
         backView.addSubview(collectionLabel)
         backView.addSubview(arrowImageView)
-        backView.addSubview(photosStackView)
-        
-        photosStackView.addArrangedSubview(firstImageView)
-        photosStackView.addArrangedSubview(secondImageView)
-        photosStackView.addArrangedSubview(thirdImageView)
-        photosStackView.addArrangedSubview(fourImageView)
-        
+        backView.addSubview(collectionView)
+    }
+    
+    private func itemSize(for width: CGFloat, with spacing: CGFloat) -> CGSize {
+        let neededWidth = width - 3 * spacing
+        let itemWidth = floor(neededWidth / Constants.itemCount)
+        return CGSize(width: itemWidth, height: itemWidth)
     }
 }
 
+extension PhotosTableViewCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotosCollectionViewCell", for: indexPath) as? PhotosCollectionViewCell else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DefaultCell", for: indexPath)
+            cell.backgroundColor = .systemRed
+            return cell
+        }
+        cell.backgroundColor = .systemGray6
+        cell.photoGalleryImages.image = UIImage(named: String(indexPath.row + 1) + ".jpeg")
+        cell.photoGalleryImages.contentMode = .scaleAspectFill
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let spacing = (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.minimumInteritemSpacing
+        return self.itemSize(for: collectionView.frame.width, with: spacing ?? 0)
+    }
+}
 //MARK: - SetConstraints
 
 extension PhotosTableViewCell {
@@ -140,12 +136,11 @@ extension PhotosTableViewCell {
         ])
         
         NSLayoutConstraint.activate([
-            photosStackView.topAnchor.constraint(equalTo: collectionLabel.bottomAnchor, constant: 12.0),
-            photosStackView.bottomAnchor.constraint(equalTo: backView.bottomAnchor, constant: -12.0),
-            photosStackView.leadingAnchor.constraint(equalTo: backView.leadingAnchor, constant: 12.0),
-            photosStackView.trailingAnchor.constraint(equalTo: backView.trailingAnchor, constant: -12.0)
+            collectionView.topAnchor.constraint(equalTo: collectionLabel.bottomAnchor, constant: 12),
+            collectionView.bottomAnchor.constraint(equalTo: backView.bottomAnchor, constant: -12.0),
+            collectionView.leadingAnchor.constraint(equalTo: backView.leadingAnchor, constant: 12.0),
+            collectionView.trailingAnchor.constraint(equalTo: backView.trailingAnchor, constant: -12.0),
+            collectionView.heightAnchor.constraint(equalToConstant: collectionViewWidth)
         ])
-        
-        NSLayoutConstraint.activate([firstImageView.heightAnchor.constraint(equalTo: firstImageView.widthAnchor, multiplier: 1.0)])
     }
 }
