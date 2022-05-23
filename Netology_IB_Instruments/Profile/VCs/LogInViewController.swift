@@ -92,12 +92,33 @@ class LogInViewController: UIViewController {
         return logButton
     }()
     
+    private lazy var validLabel: UILabel = {
+        let label = UILabel()
+        label.text = "dfdf"
+        label.textColor = .lightGray
+        label.font = .systemFont(ofSize: 12)
+        label.contentMode = .scaleToFill
+        label.textAlignment = .center
+        label.numberOfLines = 10
+        label.isHidden = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var verificationModel = VerificationModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         
         setupView()
         setConstraints()
+        
+        registerForKeyboardNotifications()
+    }
+    
+    deinit {
+        removeKeyboardNotifications()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -110,6 +131,7 @@ class LogInViewController: UIViewController {
         contentView.addSubview(logButton)
         contentView.addSubview(VKLogoImageView)
         contentView.addSubview(stackView)
+        contentView.addSubview(validLabel)
         stackView.addArrangedSubview(loginTextField)
         stackView.addArrangedSubview(passTextField)
         
@@ -117,29 +139,88 @@ class LogInViewController: UIViewController {
         view.addGestureRecognizer(tap)
     }
     
-    @objc func didTapButton() {
-        let profileViewController = ProfileViewController()
-        self.navigationController?.pushViewController(profileViewController, animated: true)
+    private func registerForKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(kbWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(kbWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    @objc func tapKeyboardOff(_ sender: Any) {
+    private func removeKeyboardNotifications() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc private func kbWillShow(_ notification: Notification) {
+        let userInfo = notification.userInfo
+        let kbFrameSize = (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        scrollView.contentOffset = CGPoint(x: 0, y: kbFrameSize.height - logButton.frame.height)
+    }
+    
+    @objc private func kbWillHide() {
+        scrollView.contentOffset = CGPoint.zero
+    }
+    
+    @objc private func tapKeyboardOff(_ sender: Any) {
         loginTextField.resignFirstResponder()
         passTextField.resignFirstResponder()
     }
     
-    @objc private func keyboardShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            scrollView.contentInset.bottom = keyboardSize.height
-            scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0,
-                                                                    left: 0,
-                                                                    bottom: keyboardSize.height,
-                                                                    right: 0)
+    @objc func didTapButton() {
+        let profileViewController = ProfileViewController()
+        
+        guard let email = loginTextField.text else {return}
+        guard let password = passTextField.text else {return}
+        
+        let enteredEmail = validEmail(email: email)
+        let enteredPassword = validPassword(password: password)
+        
+        if email.isEmpty && password.isEmpty {
+            loginTextField.twitch()
+            passTextField.twitch()
+        } else if email.isEmpty {
+            loginTextField.twitch()
+        } else if password.isEmpty {
+            passTextField.twitch()
+        } else {
+            if !enteredPassword && !enteredEmail {
+                validLabel.text = verificationModel.invalidEmailAndPassword
+                validLabel.isHidden = false
+                passTextField.twitch()
+                loginTextField.twitch()
+            } else if !enteredPassword {
+                validLabel.text = verificationModel.invalidPassword
+                validLabel.isHidden = false
+                passTextField.twitch()
+            } else if !enteredEmail {
+                validLabel.text = verificationModel.invalidEmail
+                validLabel.isHidden = false
+                loginTextField.twitch()
+            } else {
+                if (enteredEmail && enteredPassword) && (loginTextField.text != verificationModel.defaultLogin || passTextField.text != verificationModel.defaultPassword) {
+                    let alert = UIAlertController(title: "Неверный логин или пароль", message: nil, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    present(alert, animated: true, completion: nil)
+                } else {
+                    navigationController?.pushViewController(profileViewController, animated: true)
+                    validLabel.isHidden = true
+                }
+            }
         }
     }
+}
+
+//MARK: - ValidEmail, ValidPassword
+extension LogInViewController {
     
-    @objc private func keyboardHide(notification: NSNotification) {
-        scrollView.contentInset.bottom = .zero
-        scrollView.verticalScrollIndicatorInsets = .zero
+    private func validEmail(email: String) -> Bool {
+        let emailReg = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let validEmail = NSPredicate(format:"SELF MATCHES %@", emailReg)
+        return validEmail.evaluate(with: email)
+    }
+
+    private func validPassword(password : String) -> Bool {
+        let passwordReg =  ("(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z])(?=.*[@#$%^&*]).{8,}")
+        let passwordTesting = NSPredicate(format: "SELF MATCHES %@", passwordReg)
+        return passwordTesting.evaluate(with: password) && password.count > 6
     }
 }
 
@@ -182,6 +263,12 @@ extension LogInViewController {
             logButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             logButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             logButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+        
+        NSLayoutConstraint.activate([
+            validLabel.topAnchor.constraint(equalTo: logButton.bottomAnchor, constant: 1),
+            validLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            validLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
         ])
     }
 }

@@ -9,6 +9,8 @@ import UIKit
 
 class PostTableViewCell: UITableViewCell {
     
+    var likeDelegate: TapLikeDelegate?
+    
     struct ViewModel {
         let author: String
         let image: String
@@ -76,6 +78,9 @@ class PostTableViewCell: UITableViewCell {
         label.backgroundColor = .clear
         label.font = UIFont(name: "", size: 16)
         label.textColor = .black
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapLiked))
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(tap)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -118,6 +123,10 @@ class PostTableViewCell: UITableViewCell {
         descriptionLabel.text = viewModel.description
         likesLabel.text = "Likes: " + String(viewModel.likes)
         viewsLabel.text = "Views: " + String(viewModel.views)
+    }
+    
+    @objc func tapLiked() {
+        likeDelegate?.tapLikeLabel()
     }
 }
 
